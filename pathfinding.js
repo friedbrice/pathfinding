@@ -72,7 +72,7 @@ function makeGraph(matrix) {
 
 let fs = require('fs');
 
-let input = fs.readFileSync('/dev/stdin', 'utf-8');
+let input = fs.readFileSync('/dev/stdin');
 let parsed = JSON.parse(input);
 let graph = makeGraph(parsed);
 

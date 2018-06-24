@@ -17,10 +17,9 @@ findPaths start end nodes connected = gather [[start]] [start] where
 
 main :: IO ()
 main = do
-    contents <- getContents
-    let matrix = read contents :: [[Int]]
+    matrix <- read <$> getContents
     start <- randomRIO (0, length (head matrix) - 1)
     end <- randomRIO (0, length (head matrix) - 1)
     let nodes = [0..length (head matrix) - 1]
-    let output = findPaths start end nodes (\i j -> matrix !! i !! j == 1)
+        output = findPaths start end nodes (\i j -> matrix !! i !! j == 1)
     print output
