@@ -26,7 +26,7 @@ The outer array need not be in any particular order.
 [[0,1,1,0],[1,0,0,1],[1,0,0,1],[0,1,1,0]]
 ```
 
-_Program labels nodes `0, 1, 2, 3` and randomly selects `2` and `3` as start and end._
+_Program labels nodes `0`, `1`, `2`, `3` and randomly selects `2` and `3` as start and end._
 
 **Output:**
 
