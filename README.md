@@ -1,6 +1,6 @@
 # pathfinding
 
-shortest path on a graph, implemented in several languages
+Find minimal paths on a graph, implemented in several languages.
 
 ## Input
 
@@ -26,7 +26,7 @@ The outer list may be in arbitrary ordered.
 [[0,1,1,0],[1,0,0,1],[1,0,0,1],[0,1,1,0]]
 ```
 
-_program labels nodes `[0,1,2,3]` and randomly-selects `2` and `3` as start and end_
+_Program labels nodes `0, 1, 2, 3` and randomly selects `2` and `3` as start and end._
 
 **Output:**
 
