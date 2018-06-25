@@ -16,7 +16,7 @@ The program must write its output to stdout.
 The output must be a valid JSON number array array.
 Each inner array represents a minimal-length path from a randomly-selected start node to a randomly-selected end node (with nodes labeled by integers).
 The program must find all minimal paths from the start to the end.
-The program may return the minimal paths in arbitrary order.
+The outer may be in arbitrary ordered.
 
 ## Example
 
