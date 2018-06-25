@@ -14,7 +14,6 @@ public class Pathfinding {
         List<A> startPath = new ArrayList<>();
         List<A> visited = new ArrayList<>();
 
-        visited.add(start);
         startPath.add(start);
         paths.add(startPath);
 

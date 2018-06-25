@@ -57,7 +57,7 @@ function paths(
     path: [start]
   }];
 
-  return gather(init, [start]);
+  return gather(init, []);
 }
 
 /* converts an adjacency matrix to a node set and adjacency predicate */

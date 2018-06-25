@@ -1,7 +1,7 @@
 import System.Random (randomRIO)
 
 findPaths :: Eq a => a -> a -> [a] -> (a -> a -> Bool) -> [[a]]
-findPaths start end nodes connected = gather [[start]] [start] where
+findPaths start end nodes connected = gather [[start]] [] where
 
     scatter path visited = (:path) <$> filter keep nodes where
         keep node = not (node `elem` visited) && node `connected` head path

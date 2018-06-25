@@ -20,7 +20,7 @@ object Pathfinding extends App {
       }
     }
 
-    gather(paths = List(List(start)), visited = List(start))
+    gather(paths = List(List(start)), visited = List())
   }
 
   val input = scala.io.Source.fromFile("/dev/stdin").mkString
