@@ -1,4 +1,4 @@
 #!/bin/sh
 
 clear
-python3 pathfinding.py < sample1.txt
+node pathfinding.js < sample1.txt

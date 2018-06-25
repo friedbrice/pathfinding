@@ -9,55 +9,40 @@ function paths(
     /* given two nodes, tells if they are connected */
     connected) {
 
-  /* a leaf is an object with two properties:
-   *   - 'node', a node of the graph
-   *   - 'path', a path from the node back to the start
-   */
-
-  /* returns the array of all unvisited leaves adjacent to 'current' */
+  /* extends a path to all unvisited connections */
   function scatter(
-      /* current leaf */
-      current,
+      /* current path */
+      path,
       /* array of already-visited graph nodes */
       visited) {
     return nodes
         .filter(node => visited.indexOf(node) === -1)
-        .filter(node => connected(node, current.node))
-        .map(node => {
-          return {
-            node: node,
-            path: current.path.concat([node])
-          };
-        });
+        .filter(node => connected(node, path[path.length - 1]))
+        .map(node => path.concat([node]));
   }
 
   /* checks if we are done. If not, recurses after scattering */
   function gather(
-      /* array of leaves */
-      leaves,
+      /* array of paths */
+      paths,
       /* array of already-visited graph nodes */
       visited) {
 
     // scatter returned only empty arrays. i.e., all paths are dead ends
-    if (leaves.length === 0) return [];
+    if (paths.length === 0) return paths;
 
     // return all minimal paths (if any)
-    let finished = leaves.filter(leaf => leaf.node === end);
-    if (finished.length !== 0) return finished.map(leaf => leaf.path);
+    let finished = paths.filter(path => path[path.length - 1] === end);
+    if (finished.length !== 0) return finished;
 
     // we need to go deeper
-    let newVisited = visited.concat(leaves.map(leaf => leaf.node));
-    let newLeaves = leaves
-        .reduce((acc, leaf) => acc.concat(scatter(leaf, newVisited)), []);
-    return gather(newLeaves, newVisited);
+    let newVisited = visited.concat(paths.map(path => path[path.length - 1]));
+    let newPaths = paths
+        .reduce((acc, path) => acc.concat(scatter(path, newVisited)), []);
+    return gather(newPaths, newVisited);
   }
 
-  let init = [{
-    node: start,
-    path: [start]
-  }];
-
-  return gather(init, []);
+  return gather([[start]], []);
 }
 
 /* converts an adjacency matrix to a node set and adjacency predicate */
