@@ -23,9 +23,11 @@ object Pathfinding extends App {
     gather(paths = List(List(start)), visited = List(start))
   }
 
-  val input = scala.io.Source.fromFile("/dev/stdin")
-    .mkString.split("\n").toList.init.tail
-    .map(_.replaceAll("(\\s+|\\[|\\])", "").split(",").toList.map(_.toInt))
+  val input = scala.io.Source.fromFile("/dev/stdin").mkString
+    .replaceAll("\\s+", "")
+    .replaceAll("\\[(.*)\\]", "$1")
+    .split("(?<=\\]),(?=\\[)").toList
+    .map(_.replaceAll("\\[(.*)\\]", "$1").split(",").toList.map(_.toInt))
 
   val output = findPaths(
     start = scala.util.Random.nextInt(input.head.length),
@@ -33,5 +35,5 @@ object Pathfinding extends App {
     nodes = (0 until input.head.length).toList
   ) { (i, j) => input(i)(j) == 1 }
 
-  println(output)
+  println(output.map(_.mkString("[", ",", "]")).mkString("[", ",", "]"))
 }

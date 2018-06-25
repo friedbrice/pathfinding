@@ -1,5 +1,6 @@
-import        java.util.List;
+import        java.util.Arrays;
 import        java.util.ArrayList;
+import        java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public class Pathfinding {
@@ -62,15 +63,20 @@ public class Pathfinding {
             java.nio.file.Files.readAllBytes(
                 java.nio.file.Paths.get("/dev/stdin")));
 
-        String[] lines = input.split("\n");
-        List<String> rows = new ArrayList<>(lines.length - 2);
-
-        for (int i = 1; i < lines.length - 1; i++) rows.add(lines[i]);
-
-        List<List<Integer>> matrix = rows.stream()
-            .map(row -> java.util.Arrays.stream(
-                row.replaceAll("(\\s+|\\[|\\])", "").split(","))
-                .map(entry -> Integer.parseInt(entry))
+        List<List<Integer>> matrix =
+            Arrays.stream(
+                input
+                    .replaceAll("\\s+", "")
+                    .replaceAll("\\[(.*)\\]", "$1")
+                    .split("(?<=\\]),(?=\\[)")
+            )
+            .map(inner ->
+                Arrays.stream(
+                    inner
+                        .replaceAll("\\[(.*)\\]", "$1")
+                        .split(",")
+                )
+                .map(n -> Integer.valueOf(n))
                 .collect(toList())
             )
             .collect(toList());
